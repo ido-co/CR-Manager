@@ -1,15 +1,20 @@
 {% extends "template.html" %}
+{% block title %}
+<title>JANITOR REQUEST</title>
+{% endblock %}
 {% block content %}
-<h1>{{classroom}}</h1>
+<h1 style="text-align:center;">Open a ticket for room {{room}}</h1>
+<p>&nbsp;</p>
 <form method="POST">
     <div class="container">
-        <label for="ticket_title">Title</label>
-        <input type="text" class="u-full-width" placeholder="Title" id="ticket_title" name="ticket_title">
+        <input type="text" class="u-full-width" placeholder="Title" id="ticket_title" name="ticket_title" style="">
 
-        <label for="ticket">Ticket</label>
+        <p> </p>
         <textarea class="u-full-width" placeholder="The issue..." id="ticket" name="ticket"></textarea>
+        <p> </p>
 
-        <label for="urgency">Urgency</label>
+        <label for="urgency">How urgent? </label>
+
         <select class="" id="urgency" name="urgency">
             <option value="1">very low</option>
             <option value="2">low</option>
@@ -18,7 +23,6 @@
             <option value="5">critical</option>
 
         </select>
-    </div>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul class=flashes>
@@ -28,7 +32,14 @@
     </ul>
     {% endif %}
     {% endwith %}
+    <br>
+    <br>
     <input class="button-primary" style="" type="submit" value="Submit Ticket">
+    </div>
 </form>
+<form method="get" action="{{ url_for("classroom_landing_page",building="checkpoint", classroom=123) }}">
+    <input class="button" type="submit" value="back to main">
+</form>
+
 
 {% endblock %}
