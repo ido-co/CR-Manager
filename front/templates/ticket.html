@@ -37,7 +37,7 @@
     <input class="button-primary" style="" type="submit" value="Submit Ticket">
     </div>
 </form>
-<form method="get" action="{{ url_for("classroom_landing_page",building="checkpoint", classroom=123) }}">
+<form method="get" action="{{ url_for("classroom_landing_page",building=building, classroom=room) }}">
     <input class="button" type="submit" value="back to main">
 </form>
 

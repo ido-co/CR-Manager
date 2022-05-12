@@ -18,17 +18,17 @@ The AC is currently off
 <br>
 <div>
     <div class="six">
-        <form method="get" action="{{ url_for("classroom_ac_page",building="checkpoint", classroom=123) }}">
+        <form method="get" action="{{ url_for("classroom_ac_page",building=building, classroom=room) }}">
         <button id="ac" name="ac" value="Vote of AC">Vote for AC</button>
         </form>
     </div>
     <div class="six">
-        <form method="get" action="https://scottlieb.monday.com/boards/2664551840">
+        <form method="get" action={{"https://scottlieb.monday.com/boards/" + get_building_idx_timetable(building)}}>
             <button id="schedule" name="schedule" value="View Room Schedule">View Room Schedule</button>
         </form>
     </div>
     <div class="six">
-      <form method="get" action="{{ url_for("classroom_ticket_page",building="checkpoint", classroom=123) }}">
+      <form method="get" action="{{ url_for("classroom_ticket_page",building=building, classroom=room) }}">
         <button id="issues" name="issues" value="Open an Issue">Open an Issue</button>
     </div>
 </div>

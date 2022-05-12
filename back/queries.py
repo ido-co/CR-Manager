@@ -88,3 +88,6 @@ def get_lesson(timetable, hour):
     lesson = timetable[hour]
     if lesson:
         return f"{lesson} ({hour})"
+
+def get_building_idx_timetable(building):
+    return "2666498904"
