@@ -10,8 +10,8 @@ create_base = """mutation {
     create_item (
         board_id: __BUILDING_ID__,
         group_id: "topics",
-        item_name: "__DESC__",
-        column_values: "{\\"room_no_5\\":\\"__ROOM__\\",\\"status\\":\\"Open\\", \\"date4\\" :{\\"date\\" : \\"__DATE__\\"}}",
+        item_name: "__TITLE__",
+        column_values: "{\\"text\\":\\"__DESC__\\",\\"text1\\":\\"__ROOM__\\",\\"status\\":\\"Open\\", \\"date4\\" :{\\"date\\" : \\"__DATE__\\"}}",
         ) {
         id
     }
