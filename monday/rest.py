@@ -1,7 +1,7 @@
 from datetime import datetime
 import json
 from types import SimpleNamespace
-import utils
+import monday.utils as utils
 
 
 def _create_task(building_id, room, title, desc, owner=None, urgency=None):
@@ -21,7 +21,7 @@ def _get_buildings():
     all_buildings_raw = json.loads(all_buildings_json, object_hook=lambda x: SimpleNamespace(**x)).data.boards
     all_buildings = {}
     for ns in all_buildings_raw:
-        all_buildings[ns.name] = ns.id
+        all_buildings[str(ns.name).lower()] = ns.id
 
     return all_buildings
 
