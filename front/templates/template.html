@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,13 +13,13 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="../css/normalize.css"/>
-    <link rel="stylesheet" href="../css/skeleton.css"/>
+    <link rel="stylesheet" href="../static/stylesheets/normalize.css"/>
+    <link rel="stylesheet" href="../static/stylesheets/skeleton.css"/>
 
 </head>
 <body>
 
-<form method="post">
+<form method="POST">
 <!--    insert room number here-->
     <h3>Room num:</h3>
 
@@ -27,15 +27,19 @@
     <div class="row">
         <div class="six columns">
 
-            <input type="button" id="ac_on" name="ac_on" value="ON" onclick="send_AC_token('on')">
+            <input type="submit" id="ac_on" name="ac_on" value="ON">
         </div>
         <div class="six columns">
 
             <input type="button" id="ac_off" name="ac_off" value="OFF" onclick="send_AC_token('off')">
         </div>
     </div>
+    <div>
+
     <label for="exampleMessage">Ticket</label>
-    <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage"></textarea>
+<!--    <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage"></textarea>-->
+        <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage" name="jacob"></textarea>
+        </div>
     <input class="button-primary" style="" type="submit" value="Submit Ticket">
 </form>
 
