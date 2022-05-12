@@ -19,27 +19,43 @@
 </head>
 <body>
 
-<form method="POST">
 <!--    insert room number here-->
-    <h3>Room num:</h3>
-
+<h3>Room num:</h3>
+<form method="post">
     <label>AC Voting</label>
     <div class="row">
         <div class="six columns">
 
-            <input type="submit" id="ac_on" name="ac_on" value="ON">
+            <input type="submit" id="ac_on" name="ac" value="ON">
         </div>
         <div class="six columns">
 
-            <input type="button" id="ac_off" name="ac_off" value="OFF" onclick="send_AC_token('off')">
+            <input type="button" id="ac_off" name="ac" value="OFF">
         </div>
     </div>
-    <div>
+</form>
 
-    <label for="exampleMessage">Ticket</label>
-<!--    <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage"></textarea>-->
-        <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage" name="jacob"></textarea>
-        </div>
+<form method="POST">
+
+
+    <div>
+        <label for="ticket_title">Title</label>
+        <input type="text" class="u-full-width" placeholder="Title" id="ticket_title" name="ticket_title">
+
+        <label for="ticket">Ticket</label>
+        <textarea class="u-full-width" placeholder="The issue..." id="ticket" name="ticket"></textarea>
+
+        <label for="priority">Urgency</label>
+        <select class="" id="priority">
+            <option value="Option 1">1</option>
+            <option value="Option 2">2</option>
+            <option value="Option 3">3</option>
+            <option value="Option 4">4</option>
+            <option value="Option 5">5</option>
+
+        </select>
+    </div>
+
     <input class="button-primary" style="" type="submit" value="Submit Ticket">
 </form>
 
