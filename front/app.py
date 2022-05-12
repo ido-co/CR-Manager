@@ -9,7 +9,7 @@ def home():  # put application's code here
 
 @app.route('/ido/1')
 def ido():  # put application's code here
-    return render_template('home.html',skasks)
+    return render_template('template.html',skasks)
 
 
 if __name__ == '__main__':
