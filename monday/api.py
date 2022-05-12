@@ -1,4 +1,4 @@
-import rest
+import monday.rest as rest
 
 
 # Returns a dictionary building_name -> building_id.
