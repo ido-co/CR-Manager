@@ -21,7 +21,7 @@ create_base = """mutation {
 # GET ALL BUILDINGS AQL
 get_buildings_base = "{ boards (limit:1000) { name id } }"
 
-
+# DO A GQL REQUEST
 def do_gql(gql):
     response = requests.post(
         url="https://api.monday.com/v2/",
