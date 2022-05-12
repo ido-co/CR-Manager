@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
-    <meta name="description" content="I present to you a free tutorial for developing a mobile friendly app"/>
+    <meta name="description" content="Template for CR-Manager web pages"/>
     <meta name="keywords" content="Tutorial, Mobile,  Free"/>
     <meta name="author" content="<author>"/>
     <meta name="copyright" content="<author>"/>
@@ -20,25 +20,16 @@
 
 </head>
 
-<body>
+<body style="background-color:powderblue;">
 
-<!--    insert room number here-->
-<h3>Room num:{{room}}</h3>
-
-<body>
 <div>
     <br>
     {% block content %}
     {% endblock %}
     <br>
 </div>
+<p> Powered by </p>
+<img src="https://www.vectorlogo.zone/logos/monday/monday-ar21.svg" style="height:120px;">
 </body>
 
-<script>
-    function send_AC_token(token) {
-
-    }
-
-</script>
-</body>
 </html>
