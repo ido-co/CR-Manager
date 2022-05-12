@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <meta name="description" content="I present to you a free tutorial for developing a mobile friendly app"/>
+    <meta name="keywords" content="Tutorial, Mobile,  Free"/>
+    <meta name="author" content="<author>"/>
+    <meta name="copyright" content="<author>"/>
+    <meta name="robots" content="index"/>
+    <meta name="robots" content="follow"/>
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="../css/normalize.css"/>
+    <link rel="stylesheet" href="../css/skeleton.css"/>
+
+</head>
+<body>
+
+<form method="post">
+<!--    insert room number here-->
+    <h3>Room num:</h3>
+
+    <label>AC Voting</label>
+    <div class="row">
+        <div class="six columns">
+
+            <input type="button" id="ac_on" name="ac_on" value="ON" onclick="send_AC_token('on')">
+        </div>
+        <div class="six columns">
+
+            <input type="button" id="ac_off" name="ac_off" value="OFF" onclick="send_AC_token('off')">
+        </div>
+    </div>
+    <label for="exampleMessage">Ticket</label>
+    <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage"></textarea>
+    <input class="button-primary" style="" type="submit" value="Submit Ticket">
+</form>
+
+
+<script>
+    function send_AC_token(token) {
+
+    }
+
+</script>
+</body>
+</html>
