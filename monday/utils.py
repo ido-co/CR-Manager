@@ -18,8 +18,26 @@ create_base = """mutation {
 }
 """
 
+# GET TIMETABLE BASE GQL
+get_timetable_base = """query {
+  boards (ids: __BUILDING_ID__) {
+    items {
+      name
+      group {
+          title
+      }
+      column_values {
+        title
+        value
+      }
+    }
+  }
+}
+"""
+
 # GET ALL BUILDINGS AQL
-get_buildings_base = "{ boards (limit:1000) { name id } }"
+get_buildings_base = "{ boards (limit:1000, board_kind: private) {id name} }"
+get_timetable_buildings_base = "{ boards (limit:1000, board_kind: public) {id name} }"
 
 # DO A GQL REQUEST
 def do_gql(gql):
@@ -29,7 +47,10 @@ def do_gql(gql):
         json={"query": gql}
     )
 
-    print(response.text)
+    if response.status_code >= 300:
+        raise ConnectionError
+
+    # print(response.text)
     return response.text
 
 
