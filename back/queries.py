@@ -1,7 +1,5 @@
 import monday.api as api
 
-Building_to_int = None
-
 
 class BuildingError(Exception):
     pass
@@ -9,12 +7,15 @@ class BuildingError(Exception):
 
 def open_ticket(building_name, room, title, desc, owner=None, urgency=None):
     # Refresh buildings and get id
-    global Building_to_int
-    Building_to_int = api.get_buildings()
+    building_to_int = api.get_buildings()
     try:
-        building_id = Building_to_int[building_name]
+        building_id = building_to_int[building_name]
     except KeyError:
         raise BuildingError
+    try:
+        api.create_task(building_id, room, title, desc, owner=None, urgency=None)
+    except ConnectionError:
+        raise ConnectionError
+    return 0
 
-    api.create_task(building_id, room, title, desc, owner=None, urgency=None)
 
