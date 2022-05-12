@@ -35,9 +35,14 @@ def do_gql(gql):
 
 # GET URGENCY STRING FROM INT
 def get_urgency(urgency_int):
-    if not 1 <= urgency_int and urgency_int <= 5:
-        raise ValueError
     if urgency_int == 1:
         return "Very Low"
-    else:
+    if urgency_int == 2:
         return "Low"
+    if urgency_int == 3:
+        return "Medium"
+    if urgency_int == 4:
+        return "High"
+    if urgency_int == 5:
+        return "Critical"
+    raise ValueError
