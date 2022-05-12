@@ -7,7 +7,7 @@ class BuildingError(Exception):
     pass
 
 
-def open_ticket(building_name, room, desc, owner=None, urgency=None):
+def open_ticket(building_name, room, title, desc, owner=None, urgency=None):
     # Refresh buildings and get id
     global Building_to_int
     Building_to_int = api.get_buildings()
@@ -16,5 +16,5 @@ def open_ticket(building_name, room, desc, owner=None, urgency=None):
     except KeyError:
         raise BuildingError
 
-    api.create_task(building_id, room, desc, owner=None, urgency=None)
+    api.create_task(building_id, room, title, desc, owner=None, urgency=None)
 
