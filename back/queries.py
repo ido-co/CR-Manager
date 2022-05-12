@@ -1,7 +1,9 @@
 import monday.api as api
 from collections import defaultdict
+import datetime
 
-ac_counter = defaultdict(int)
+ac_counter = defaultdict(lambda: [0, datetime.datetime.now()])
+
 
 class BuildingError(Exception):
     pass
@@ -22,16 +24,26 @@ def open_ticket(building_name, room, title, desc, owner=None, urgency=None):
 
 
 def inc_ac_counter(room):
-    ac_counter[room] += 1
-    return ac_counter[room] > 0
+    now = datetime.datetime.now()
+    ac = ac_counter[room]
+    if (now - ac[1]).seconds > 60:
+        ac[1] = now
+        ac[0] = 1
+    else:
+        ac[0] += 1
+    return ac_counter[room][0] > 0
 
 
 def dec_ac_counter(room):
-    ac_counter[room] -= 1
-    return ac_counter[room] > 0
+    now = datetime.datetime.now()
+    ac = ac_counter[room]
+    if (now - ac[1]).seconds > 60:
+        ac[1] = now
+        ac[0] = -1
+    else:
+        ac[0] -= 1
+    return ac_counter[room][0] > 0
 
 
-def reset_ac_counter():
-    global ac_counter
-    ac_counter = defaultdict(int)
+
 
