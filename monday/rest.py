@@ -19,11 +19,48 @@ def _create_task(building_id, room, title, desc, owner=None, urgency=None):
 
 
 def _get_buildings():
-    all_buildings_json = utils.do_gql(utils.get_buildings_base)
+    all_buildings = _get_buildings_generic(utils.get_buildings_base)
+    return all_buildings
+
+
+def _get_timetable_buildings():
+    all_buildings = _get_buildings_generic(utils.get_timetable_buildings_base)
+    return all_buildings
+
+
+def _get_buildings_generic(gql_base):
+    all_buildings_json = utils.do_gql(gql_base)
     all_buildings_raw = json.loads(all_buildings_json, object_hook=lambda x: SimpleNamespace(**x)).data.boards
     all_buildings = {}
     for ns in all_buildings_raw:
         all_buildings[str(ns.name).lower()] = ns.id
 
     return all_buildings
+
+
+def _get_building_timetable(building_name):
+    building_map = _get_timetable_buildings()
+    if building_name not in building_map:
+        raise ValueError
+
+    building_id = building_map[building_name]
+    timetable_gql = utils.get_timetable_base.replace("__BUILDING_ID__", building_id)
+    return utils.do_gql(timetable_gql)
+
+
+def _get_timetable(building_id, room, day):
+    full_timetable_json = _get_building_timetable(building_id)
+    full_timetable = json.loads(full_timetable_json, object_hook=lambda x: SimpleNamespace(**x)).data.boards
+
+    timetable = {}
+    try:
+        for ns in full_timetable:
+            for r in ns.items:
+                if r.name == day and r.group.title == room:
+                    for hour in r.column_values:
+                        timetable[hour.title] = hour.value
+    except:
+        ValueError
+
+    return timetable
 
