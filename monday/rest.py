@@ -7,11 +7,13 @@ import monday.utils as utils
 def _create_task(building_id, room, title, desc, owner=None, urgency=None):
     building_id = str(building_id)
     date = datetime.today().strftime('%Y-%m-%d')
+    urgency = utils.get_urgency(urgency)
     gql = utils.create_base.replace("__BUILDING_ID__", building_id)
     gql = gql.replace("__ROOM__", room)
     gql = gql.replace("__TITLE__", title)
     gql = gql.replace("__DESC__", desc)
     gql = gql.replace("__DATE__", date)
+    gql = gql.replace("__URGENCY__", urgency)
 
     return utils.do_gql(gql)
 

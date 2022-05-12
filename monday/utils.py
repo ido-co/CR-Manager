@@ -11,7 +11,7 @@ create_base = """mutation {
         board_id: __BUILDING_ID__,
         group_id: "topics",
         item_name: "__TITLE__",
-        column_values: "{\\"text\\":\\"__DESC__\\",\\"text1\\":\\"__ROOM__\\",\\"status\\":\\"Open\\", \\"date4\\" :{\\"date\\" : \\"__DATE__\\"}}",
+        column_values: "{\\"text\\":\\"__DESC__\\",\\"text1\\":\\"__ROOM__\\",\\"status\\":\\"Open\\", \\"status_1\\":\\"__URGENCY__\\", \\"date4\\" :{\\"date\\" : \\"__DATE__\\"}}",
         ) {
         id
     }
@@ -31,3 +31,13 @@ def do_gql(gql):
 
     print(response.text)
     return response.text
+
+
+# GET URGENCY STRING FROM INT
+def get_urgency(urgency_int):
+    if not 1 <= urgency_int and urgency_int <= 5:
+        raise ValueError
+    if urgency_int == 1:
+        return "Very Low"
+    else:
+        return "Low"
