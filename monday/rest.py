@@ -25,6 +25,3 @@ def _get_buildings():
 
     return all_buildings
 
-
-def _get_rooms(building_id):
-    return ["001", "002", "101", "102", "201", "202"]
