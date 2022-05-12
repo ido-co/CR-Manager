@@ -1,0 +1,34 @@
+{% extends "template.html" %}
+{% block content %}
+<h1>{{classroom}}</h1>
+<form method="POST">
+    <div class="container">
+        <label for="ticket_title">Title</label>
+        <input type="text" class="u-full-width" placeholder="Title" id="ticket_title" name="ticket_title">
+
+        <label for="ticket">Ticket</label>
+        <textarea class="u-full-width" placeholder="The issue..." id="ticket" name="ticket"></textarea>
+
+        <label for="urgency">Urgency</label>
+        <select class="" id="urgency" name="urgency">
+            <option value="1">very low</option>
+            <option value="2">low</option>
+            <option value="3">medium</option>
+            <option value="4">high</option>
+            <option value="5">critical</option>
+
+        </select>
+    </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <input class="button-primary" style="" type="submit" value="Submit Ticket">
+</form>
+
+{% endblock %}

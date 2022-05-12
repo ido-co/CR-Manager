@@ -1,0 +1,28 @@
+{% extends "/template.html" %}
+
+{% block landing%}
+<link rel="stylesheet" href="../static/stylesheets/normalize.css"/>
+<link rel="stylesheet" href="../static/stylesheets/skeleton.css"/>
+
+<h3>Welcome to room !</h3>
+
+The AC is currently off
+
+<div class="row">
+    <div>Current class in the room:</div>
+    <div>Next class in the room:</div>
+</div>
+
+<br>
+<div>
+    <div class="six">
+        <button id="ac" name="ac" value="Vote of AC">Vote for AC</button>
+    </div>
+    <div class="six">
+        <button id="schedule" name="schedule" value="View Room Schedule">View Room Schedule</button>
+    </div>
+    <div class="six">
+        <button id="issues" name="issues" value="Open an Issue">Open an Issue</button>
+    </div>
+</div>
+{% endblock %}
