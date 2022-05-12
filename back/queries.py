@@ -13,7 +13,7 @@ def open_ticket(building_name, room, title, desc, owner=None, urgency=None):
     except KeyError:
         raise BuildingError
     try:
-        api.create_task(building_id, room, title, desc, owner=None, urgency=None)
+        api.create_task(building_id, room, title, desc, owner, urgency)
     except ConnectionError:
         raise ConnectionError
     return 0
