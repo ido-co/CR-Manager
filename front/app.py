@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 from back.queries import open_ticket
 
 app = Flask(__name__)
@@ -27,15 +27,14 @@ def home():
 @app.route('/<building>/<classroom>', methods=['GET', 'POST'])
 def classroom_page(building, classroom):
     print(request.method)
-    if request.method == 'GET':
+    if request.method == 'GET' or assert_input(request.form,
+                                               ["ticket_title", "ticket"]):
         return render_template('template.html')
 
     print(request.values)
     print(request.form)
-    form = request.form
-    assert_input(request)
-    open_ticket(title=form["ticket_title"],
-                desc=form["ticket"],
+    open_ticket(title=request.form["ticket_title"],
+                desc=request.form["ticket"],
                 # form["urgency"]
                 building_name=building,
                 room=classroom,
@@ -43,10 +42,15 @@ def classroom_page(building, classroom):
     return render_template('template.html')
 
 
-def assert_input(req , input_list):
-    missing =[]
+def assert_input(req, input_list):
+    missing = False
+    for item in input_list:
+        if req.get(item) is None:
+            flash(f"{item} is missing",category="error" )
+            pass
+        return missing
     pass
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0")
