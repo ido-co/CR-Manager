@@ -4,13 +4,15 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def home():  # put application's code here
-    return "hello"
+def home():
+    return render_template('home.html')
 
-@app.route('/ido/1')
-def ido():  # put application's code here
-    return render_template('home.html',skasks)
+@app.route('/class/<classroom>')
+def classroom_page(classroom):
+
+    return render_template('real_python_2.html',classroom = classroom)
 
 
 if __name__ == '__main__':
+
     app.run()
