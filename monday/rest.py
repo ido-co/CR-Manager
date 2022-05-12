@@ -1,20 +1,28 @@
+from datetime import datetime
+import json
+from types import SimpleNamespace
 import utils
 
 
 def _create_task(building_id, room, desc, owner=None, urgency=None):
-    gql = 'mutation { ' \
-            'create_item(' \
-                'board_id: ' + str(building_id) + ', ' \
-                'group_id: "topics", ' \
-                'item_name: "' + desc + '"), ' \
-                'column_values: "{"room_no_5":"1234","status":"Open", "date4" : {"date" : "2022-05-12"}}"' \
-            '{id}}'
+    building_id = str(building_id)
+    date = datetime.today().strftime('%Y-%m-%d')
+    gql = utils.create_base.replace("__BUILDING_ID__", building_id)
+    gql = gql.replace("__ROOM__", room)
+    gql = gql.replace("__DESC__", desc)
+    gql = gql.replace("__DATE__", date)
 
-    utils.do_gql(gql)
+    return utils.do_gql(gql)
 
 
 def _get_buildings():
-    return {"checkpoint": 2663304427, "gilman": 2663320712}
+    all_buildings_json = utils.do_gql(utils.get_buildings_base)
+    all_buildings_raw = json.loads(all_buildings_json, object_hook=lambda x: SimpleNamespace(**x)).data.boards
+    all_buildings = {}
+    for ns in all_buildings_raw:
+        all_buildings[ns.name] = ns.id
+
+    return all_buildings
 
 
 def _get_rooms(building_id):
