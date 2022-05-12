@@ -1,4 +1,7 @@
 {% extends "template.html" %}
+{% block title %}
+<title>JANITOR REQUEST</title>
+{% endblock %}
 {% block content %}
 <h1 style="text-align:center;">Open a ticket for room {{room}}</h1>
 <p>&nbsp;</p>
@@ -34,5 +37,9 @@
     <input class="button-primary" style="" type="submit" value="Submit Ticket">
     </div>
 </form>
+<form method="get" action="{{ url_for("classroom_landing_page",building="checkpoint", classroom=123) }}">
+    <input class="button" type="submit" value="back to main">
+</form>
+
 
 {% endblock %}

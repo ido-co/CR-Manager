@@ -1,17 +1,28 @@
-{% extends "real_python_tutorial.html" %}
+{% extends "template.html" %}
+{% block title %}
+<title>AC Vote</title>
+
+{% endblock %}
 {% block content %}
-<h1>{{classroom}}</h1>
-<form method="POST">
-    <label>AC Voting</label>
-    <div class="row">
-        <div class="six columns">
+<div class= "container">
+    <h1>{{classroom}}</h1>
+    <form method="POST">
+        <h1>AC Voting</h1>
+        <h4>the AC is {{ac_status}} </h4>
+        <label>would you like ac ?</label>
+        <div class="row">
+            <div class="six columns">
 
-            <input type="submit" id="ac_on" name="ac" value="ON">
-        </div>
-        <div class="six columns">
+                <input type="submit" id="ac_on" name="ac" value="ON">
+            </div>
+            <div class="two-thirds">
 
-            <input type="button" id="ac_off" name="ac" value="OFF">
+                <input type="submit" id="ac_off" name="ac" value="OFF">
+            </div>
         </div>
-    </div>
+    </form>
+</div>
+<form method="get" action="{{ url_for("classroom_landing_page",building="checkpoint", classroom=123) }}">
+    <input class="button" type="submit" value="back to main">
 </form>
 {% endblock %}

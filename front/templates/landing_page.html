@@ -1,7 +1,9 @@
 {% extends "/template.html" %}
-
+{% block title %}
+<title>ROOM SERVICE</title>
+    {% endblock %}
 {% block content %}
-<link rel="stylesheet" href="../static/stylesheets/normalize.css"/>
+<link rel="stylesheet" href="../static/stylesheets/normalize.css" xmlns="http://www.w3.org/1999/html"/>
 <link rel="stylesheet" href="../static/stylesheets/skeleton.css"/>
 
 <h3>Welcome to room {{room}}!</h3>
@@ -9,19 +11,24 @@
 The AC is currently off
 
 <div class="row">
-    <div>Current class in the room:</div>
-    <div>Next class in the room:</div>
+    <div>Current class in the room: {{this_lesson}}</div>
+    <div>Next class in the room: {{next_lesson}}</div>
 </div>
 
 <br>
 <div>
     <div class="six">
+        <form method="get" action="{{ url_for("classroom_ac_page",building="checkpoint", classroom=123) }}">
         <button id="ac" name="ac" value="Vote of AC">Vote for AC</button>
+        </form>
     </div>
     <div class="six">
-        <button id="schedule" name="schedule" value="View Room Schedule">View Room Schedule</button>
+        <form method="get" action="https://scottlieb.monday.com/boards/2664551840">
+            <button id="schedule" name="schedule" value="View Room Schedule">View Room Schedule</button>
+        </form>
     </div>
     <div class="six">
+      <form method="get" action="{{ url_for("classroom_ticket_page",building="checkpoint", classroom=123) }}">
         <button id="issues" name="issues" value="Open an Issue">Open an Issue</button>
     </div>
 </div>
