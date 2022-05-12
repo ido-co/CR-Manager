@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <meta name="description" content="I present to you a free tutorial for developing a mobile friendly app"/>
+    <meta name="keywords" content="Tutorial, Mobile,  Free"/>
+    <meta name="author" content="<author>"/>
+    <meta name="copyright" content="<author>"/>
+    <meta name="robots" content="index"/>
+    <meta name="robots" content="follow"/>
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="../css/normalize.css"/>
+    <link rel="stylesheet" href="../css/skeleton.css"/>
+
+</head>
+<body>
+
+<form>
+<!--    insert room number here-->
+    <h3>Room num:</h3>
+
+    <label for="exampleMessage">AC</label>
+    <div class="row">
+        <div class="six columns">
+
+            <input type="button" id="ac_on" name="ac_on" value="ON" onclick="send_AC_token('on')">
+        </div>
+        <div class="six columns">
+
+            <input type="button" id="ac_off" name="ac_off" value="OFF" onclick="send_AC_token('off')">
+        </div>
+    </div>
+    <label for="exampleMessage">Message</label>
+    <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage"></textarea>
+    <label class="example-send-yourself-copy">
+        <input type="checkbox">
+        <span class="label-body">Send a copy to yourself</span>
+    </label>
+    <input class="button-primary" type="submit" value="Submit">
+</form>
+
+
+<script>
+    function send_AC_token(token) {
+
+    }
+
+</script>
+<h1>hellooooooooo </h1>
+</body>
+</html>
