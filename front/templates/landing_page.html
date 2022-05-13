@@ -18,17 +18,17 @@
 <br>
 <div>
     <div class="six">
-        <form style="margin: auto; width: 220px;" method="get" action="{{ url_for("classroom_ac_page",building="checkpoint", classroom=123) }}">
+        <form style="margin: auto; width: 220px;" method="get" action="{{ url_for("classroom_ac_page",building=building, classroom=room) }}">
         <button class="button button1" id="ac" name="ac" value="Vote of AC">Vote for AC</button>
         </form>
     </div>
     <div class="six">
-        <form style="margin: auto; width: 220px;" method="get" action="https://scottlieb.monday.com/boards/2664551840">
+        <form style="margin: auto; width: 220px;" method="get" action={{"https://scottlieb.monday.com/boards/" + get_building_idx_timetable(building)}}>
             <button class="button button1" id="schedule" name="schedule" value="View Room Schedule">View Room Schedule</button>
         </form>
     </div>
     <div class="six">
-      <form style="margin: auto; width: 220px;" method="get" action="{{ url_for("classroom_ticket_page",building="checkpoint", classroom=123) }}">
+      <form style="margin: auto; width: 220px;" method="get" action="{{ url_for("classroom_ticket_page",building=building, classroom=room) }}">
         <button class="button button1" id="issues" name="issues" value="Open an Issue">Open an Issue</button>
     </div>
 </div>

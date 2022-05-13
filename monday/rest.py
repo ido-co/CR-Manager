@@ -39,13 +39,21 @@ def _get_buildings_generic(gql_base):
 
 
 def _get_building_timetable(building_name):
-    building_map = _get_timetable_buildings()
+    building_map = _get_building_idx_timetable(building_name)
     if building_name not in building_map:
         raise ValueError
 
     building_id = building_map[building_name]
     timetable_gql = utils.get_timetable_base.replace("__BUILDING_ID__", building_id)
     return utils.do_gql(timetable_gql)
+
+
+def _get_building_idx_timetable(building_name):
+    building_map = _get_timetable_buildings()
+    if building_name not in building_map:
+        raise ValueError
+
+    return building_map[building_name]
 
 
 def _get_timetable(building_id, room, day):

@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, flash
-from back.queries import open_ticket, inc_ac_counter, dec_ac_counter, get_classes
+from flask import Flask, render_template, request, flash, redirect, url_for
+from back.queries import open_ticket, inc_ac_counter, dec_ac_counter, get_classes ,get_building_idx_timetable
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -7,23 +7,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    print(request.method)
-    if request.method == 'GET':
-        pass
-    return render_template('classroom_landing.html')
-
-    print(request.values)
-    print(request.form)
-    form = request.form
-    # assert_input(request)
-    # open_ticket(form["ticket_title"],
-    #             form["ticket"],
-    #             # form["urgency"]
-    #             1234,
-    #
-    #             )
-
-    return render_template('template.html')
+    return render_template('oops.html')
 
 
 @app.route('/<building>/<classroom>', methods=['GET', 'POST'])
@@ -47,6 +31,9 @@ def classroom_ac_page(building, classroom):
               "OFF": dec_ac_counter}
     if request.method == "POST":
         AC_STATUS = method[request.form["ac"]](classroom, request.remote_addr)
+        url = url_for("classroom_ac_page", building="checkpoint", classroom=123)
+        return redirect(url, code=302)
+
     return render_template('ac.html',
                            building=building,
                            room=classroom,
@@ -58,7 +45,10 @@ def classroom_ac_page(building, classroom):
 def classroom_ticket_page(building, classroom):
     if request.method == 'GET' or assert_input(request.form,
                                                ["ticket_title", "ticket"]):
-        return render_template('ticket.html')
+        return render_template('ticket.html',
+                               building=building,
+                               room=classroom,
+                               )
 
     open_ticket(title=request.form["ticket_title"],
                 desc=request.form["ticket"],
@@ -66,7 +56,10 @@ def classroom_ticket_page(building, classroom):
                 building_name=building,
                 room=classroom,
                 )
-    return render_template('ticket.html')
+    return render_template('ticket.html',
+                           building=building,
+                           room=classroom,
+                           )
 
 
 def assert_input(req, input_list):
