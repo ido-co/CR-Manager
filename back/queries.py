@@ -91,4 +91,4 @@ def get_lesson(timetable, hour):
 
 
 def get_building_idx_timetable(building):
-    return api.get_building_idx_timetable(building)
+    return api.get_building_idx_timetable(building.lower())

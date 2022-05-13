@@ -177,7 +177,7 @@ input[type="button"] {
   display: inline-block;
   height: 38px;
   padding: 0 30px;
-  color: #555;
+  color: darkslategray;
   text-align: center;
   font-size: 11px;
   font-weight: 600;
@@ -186,11 +186,11 @@ input[type="button"] {
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  background-color: transparent;
-  border-radius: 4px;
-  border: 1px solid #bbb;
+  background-color: white;
+  border-radius: 20px;
+  border: none;
   cursor: pointer;
-  box-sizing: border-box; }
+  box-sizing: border-box;}
 .button:hover,
 button:hover,
 input[type="submit"]:hover,
@@ -209,9 +209,9 @@ button.button-primary,
 input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
-  color: #FFF;
-  background-color: #33C3F0;
-  border-color: #33C3F0; }
+  color: darkslategray;
+  background-color: white;
+  border-color: white;}
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
@@ -222,9 +222,10 @@ button.button-primary:focus,
 input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
-  color: #FFF;
-  background-color: #1EAEDB;
-  border-color: #1EAEDB; }
+  color: darkslategray;
+  background-color: white;
+  border-color: white; }
+.button1 {width: 100%;}
 
 
 /* Forms
@@ -244,7 +245,9 @@ select {
   border: none;
   border-radius: 20px;
   box-shadow: none;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  color: darkslategray;
+  alignment: center}
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
 input[type="number"],
@@ -261,6 +264,22 @@ textarea {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none; }
+::-webkit-input-placeholder {
+  color: darkslategray;
+  font-size: 20px;
+}
+::-moz-placeholder {
+  color: darkslategray;
+  font-size: 20px;
+}
+:-ms-input-placeholder {
+  color: darkslategray;
+  font-size: 20px;
+}
+::placeholder {
+  color: darkslategray;
+  font-size: 20px;
+}
 textarea {
   min-height: 65px;
   padding-top: 6px;

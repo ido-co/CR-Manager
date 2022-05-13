@@ -1,35 +1,36 @@
 {% extends "/template.html" %}
 {% block title %}
 <title>ROOM SERVICE</title>
-    {% endblock %}
+{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="../static/stylesheets/normalize.css" xmlns="http://www.w3.org/1999/html"/>
 <link rel="stylesheet" href="../static/stylesheets/skeleton.css"/>
+<div class="container" style="align-content: center">
+<h3 style="text-align:center;">Welcome to {{building.capitalize()}} {{room}}!</h3>
 
-<h3>Welcome to room {{room}}!</h3>
-
-The AC is currently off
+    <p style="text-align:center; font-size: large">The AC is currently off</p>
 
 <div class="row">
-    <div>Current class in the room: {{this_lesson}}</div>
-    <div>Next class in the room: {{next_lesson}}</div>
+    <div style="text-align:center; font-size: large">Current class in the room: {{this_lesson}}</div>
+    <div style="text-align:center; font-size: large">Next class in the room: {{next_lesson}}</div>
 </div>
 
 <br>
 <div>
     <div class="six">
-        <form method="get" action="{{ url_for("classroom_ac_page",building=building, classroom=room) }}">
-        <button id="ac" name="ac" value="Vote of AC">Vote for AC</button>
+        <form style="margin: auto; width: 220px;" method="get" action="{{ url_for("classroom_ac_page",building=building, classroom=room) }}">
+        <button class="button button1" id="ac" name="ac" value="Vote of AC">Vote for AC</button>
         </form>
     </div>
     <div class="six">
-        <form method="get" action={{"https://scottlieb.monday.com/boards/" + get_building_idx_timetable(building)}}>
-            <button id="schedule" name="schedule" value="View Room Schedule">View Room Schedule</button>
+        <form style="margin: auto; width: 220px;" method="POST">
+            <button class="button button1" id="schedule" name="schedule" value="View Room Schedule">View Room Schedule</button>
         </form>
     </div>
     <div class="six">
-      <form method="get" action="{{ url_for("classroom_ticket_page",building=building, classroom=room) }}">
-        <button id="issues" name="issues" value="Open an Issue">Open an Issue</button>
+      <form style="margin: auto; width: 220px;" method="get" action="{{ url_for("classroom_ticket_page",building=building, classroom=room) }}">
+        <button class="button button1" id="issues" name="issues" value="Open an Issue">Open an Issue</button>
     </div>
+</div>
 </div>
 {% endblock %}

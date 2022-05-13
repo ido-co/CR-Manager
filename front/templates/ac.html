@@ -5,24 +5,20 @@
 {% endblock %}
 {% block content %}
 <div class= "container">
-    <h1>{{classroom}}</h1>
     <form method="POST">
-        <h1>AC Voting</h1>
-        <h4>the AC is {{ac_status}} </h4>
-        <label>would you like ac ?</label>
-        <div class="row">
-            <div class="six columns">
-
+        <h1 style="text-align:center;">{{building.capitalize()}} {{room}} - AC Vote</h1>
+        <p>&nbsp;</p>
+        <h4 style="text-align:center; font-size: large">AC is currently {{ac_status}} - how would you like it?</h4>
+        <p>&nbsp;</p>
+        <div style="text-align: center">
                 <input type="submit" id="ac_on" name="ac" value="ON">
-            </div>
-            <div class="two-thirds">
-
                 <input type="submit" id="ac_off" name="ac" value="OFF">
-            </div>
         </div>
     </form>
 </div>
-<form method="get" action="{{ url_for("classroom_landing_page",building="checkpoint", classroom=123) }}">
+<form method="get" action="{{ url_for("classroom_landing_page",building=building, classroom=room) }}">
+    <div style="text-align: center">
     <input class="button" type="submit" value="back to main">
+    </div>
 </form>
 {% endblock %}

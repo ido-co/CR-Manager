@@ -3,19 +3,19 @@
 <title>JANITOR REQUEST</title>
 {% endblock %}
 {% block content %}
-<h1 style="text-align:center;">Open a ticket for room {{room}}</h1>
+<h1 style="text-align:center;">Open a ticket for {{building.capitalize()}} {{room}}</h1>
 <p>&nbsp;</p>
 <form method="POST">
     <div class="container">
-        <input type="text" class="u-full-width" placeholder="Title" id="ticket_title" name="ticket_title" style="">
+        <input type="text" class="u-full-width" placeholder="Title" id="ticket_title" name="ticket_title" style="font-size: 20px">
 
         <p> </p>
-        <textarea class="u-full-width" placeholder="The issue..." id="ticket" name="ticket"></textarea>
+        <textarea class="u-full-width" placeholder="The issue..." id="ticket" name="ticket" style="font-size: 20px"></textarea>
         <p> </p>
 
-        <label for="urgency">How urgent? </label>
+        <label for="urgency" style="font-size: large">How urgent? </label>
 
-        <select class="" id="urgency" name="urgency">
+        <select class="" id="urgency" name="urgency" style="font-size: large">
             <option value="1">very low</option>
             <option value="2">low</option>
             <option value="3">medium</option>
@@ -27,18 +27,22 @@
     {% if messages %}
     <ul class=flashes>
         {% for message in messages %}
-        <li>{{ message }}</li>
+        <li style="color: red; font-size: medium">{{ message }}</li>
         {% endfor %}
     </ul>
     {% endif %}
     {% endwith %}
     <br>
     <br>
-    <input class="button-primary" style="" type="submit" value="Submit Ticket">
+    <div style="text-align: center">
+    <input class="button-primary" style="text-align: center" type="submit" value="Submit Ticket">
+    </div>
     </div>
 </form>
 <form method="get" action="{{ url_for("classroom_landing_page",building=building, classroom=room) }}">
+    <div style="text-align: center">
     <input class="button" type="submit" value="back to main">
+    </div>
 </form>
 
 
