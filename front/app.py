@@ -1,14 +1,24 @@
+import json
+
 from flask import Flask, render_template, request, flash, redirect, url_for
 from back.queries import open_ticket, inc_ac_counter, dec_ac_counter, get_classes, get_building_idx_timetable
 from flask_restful import Resource, Api
+from collections import defaultdict
+
 app = Flask(__name__)
+app_1 = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-app = Flask(__name__)
-api = Api(app)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('oops.html')
+
+
+@app.route('/ac/<building>/<classroom>')
+def hello(building, classroom):
+    mode = "ON" if AC_STATUS[str(building) + "_" + str(classroom)] else "OFF"
+    return json.dumps({"status": mode})
 
 
 @app.route('/<building>/<classroom>/test', methods=['GET', 'POST'])
@@ -34,11 +44,10 @@ def classroom_landing_page(building, classroom):
                            this_lesson=now,
                            next_lesson=later,
                            get_building_idx=get_building_idx_timetable
-
                            )
 
 
-AC_STATUS = False
+AC_STATUS = defaultdict(bool)
 
 
 @app.route('/<building>/<classroom>/ac', methods=['GET', 'POST'])
@@ -47,14 +56,14 @@ def classroom_ac_page(building, classroom):
     method = {"ON": inc_ac_counter,
               "OFF": dec_ac_counter}
     if request.method == "POST":
-        AC_STATUS = method[request.form["ac"]](classroom, request.remote_addr)
-        url = url_for("classroom_ac_page", building="checkpoint", classroom=123)
+        AC_STATUS[str(building) + "_" + str(classroom)] = method[request.form["ac"]](classroom, request.remote_addr)
+        url = url_for("classroom_ac_page", building=building, classroom=classroom)
         return redirect(url, code=302)
 
     return render_template('ac.html',
                            building=building,
                            room=classroom,
-                           ac_status=("ON" if AC_STATUS else "OFF")
+                           ac_status=("ON" if AC_STATUS[str(building) + "_" + str(classroom)] else "OFF")
                            )
 
 
@@ -73,7 +82,7 @@ def classroom_ticket_page(building, classroom):
                 building_name=building,
                 room=classroom,
                 )
-    return render_template('ticket.html',
+    return render_template('submitted.html',
                            building=building,
                            room=classroom,
                            )
@@ -93,9 +102,8 @@ class HelloWorld(Resource):
         return {'hello': 'world'}
 
 
-
 if __name__ == '__main__':
     # app = Flask(__name__)
-    api = Api(app)
+    api = Api(app_1)
     api.add_resource(HelloWorld, '/1')
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port=5000)
