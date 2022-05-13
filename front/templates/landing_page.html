@@ -8,28 +8,28 @@
 <div class="container" style="align-content: center">
 <h3 style="text-align:center;">Welcome to {{building}} {{room}}!</h3>
 
-    <p style="text-align:center;">The AC is currently off</p>
+    <p style="text-align:center; font-size: large">The AC is currently off</p>
 
 <div class="row">
-    <div style="text-align:center;">Current class in the room: {{this_lesson}}</div>
-    <div style="text-align:center;">Next class in the room: {{next_lesson}}</div>
+    <div style="text-align:center; font-size: large">Current class in the room: {{this_lesson}}</div>
+    <div style="text-align:center; font-size: large">Next class in the room: {{next_lesson}}</div>
 </div>
 
 <br>
 <div>
     <div class="six">
         <form style="margin: auto; width: 220px;" method="get" action="{{ url_for("classroom_ac_page",building="checkpoint", classroom=123) }}">
-        <button id="ac" name="ac" value="Vote of AC">Vote for AC</button>
+        <button class="button button1" id="ac" name="ac" value="Vote of AC">Vote for AC</button>
         </form>
     </div>
     <div class="six">
         <form style="margin: auto; width: 220px;" method="get" action="https://scottlieb.monday.com/boards/2664551840">
-            <button id="schedule" name="schedule" value="View Room Schedule">View Room Schedule</button>
+            <button class="button button1" id="schedule" name="schedule" value="View Room Schedule">View Room Schedule</button>
         </form>
     </div>
     <div class="six">
       <form style="margin: auto; width: 220px;" method="get" action="{{ url_for("classroom_ticket_page",building="checkpoint", classroom=123) }}">
-        <button id="issues" name="issues" value="Open an Issue">Open an Issue</button>
+        <button class="button button1" id="issues" name="issues" value="Open an Issue">Open an Issue</button>
     </div>
 </div>
 </div>

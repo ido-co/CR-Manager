@@ -34,11 +34,15 @@
     {% endwith %}
     <br>
     <br>
-    <input class="button-primary" style="" type="submit" value="Submit Ticket">
+    <div style="text-align: center">
+    <input class="button-primary" style="text-align: center" type="submit" value="Submit Ticket">
+    </div>
     </div>
 </form>
 <form method="get" action="{{ url_for("classroom_landing_page",building="checkpoint", classroom=123) }}">
+    <div style="text-align: center">
     <input class="button" type="submit" value="back to main">
+    </div>
 </form>
 
 
