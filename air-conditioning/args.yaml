@@ -1,0 +1,4 @@
+serverIP: "192.168.43.26"
+serverPort: "5000"
+buildingName: "checkpoint"
+roomNumber: "001"
